@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitrate Math - recording size and bitrate arithmetic</title>
+<style>
+  :root { --accent:#b4540f; --ink:#2a1a10; --paper:#fdf6f0; --soft:#f6e4d3; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2.5rem 1.2rem; }
+  h1 { font-size:2.2rem; color:var(--accent); }
+  p.lede { font-size:1.12rem; margin:.9rem 0 1.6rem; }
+  .boundary { margin-bottom:1.6rem; }
+  section { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1.1rem 1.2rem; margin-bottom:1.2rem; }
+  h2 { font-size:1.18rem; margin-bottom:.5rem; }
+  section p { font-size:.98rem; }
+  a.btn { display:inline-block; margin-top:1.4rem; background:var(--accent); color:#fff; text-decoration:none; padding:.8rem 1.6rem; border-radius:999px; font-size:1.05rem; }
+  footer { margin-top:2.2rem; font-size:.85rem; color:#8a6347; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Bitrate Math</h1>
+  <p class="lede">A bitrate is a speed. A recording is a size.</p>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    Bitrate Math turns the bitrate, length and sizes you type into sizes, lengths and rates, in decimal units. It does not know what a real file adds on top, and it does not say what bitrate or settings to use. You decide that.
+  </div>
+  <section>
+    <h2>The size truth</h2>
+    <p>128 kbps for 60 minutes: 57.60 MB, 0.06 GB. Bitrate times time, divided by eight bits to the byte.</p>
+  </section>
+  <section>
+    <h2>The fit truth</h2>
+    <p>Capacity 500 GB at 8000 kbps holds 8333 minutes, which is 138 hours 53 minutes. Whole minutes only.</p>
+  </section>
+  <section>
+    <h2>The rate truth</h2>
+    <p>450 MB over 60 minutes averages 1000 kbps. Size in, average rate out.</p>
+  </section>
+  <a class="btn" href="app.html">Run your numbers</a>
+  <footer>Bitrate Math is exact arithmetic over the numbers you enter, nothing more.</footer>
+</main>
+</body>
+</html>
