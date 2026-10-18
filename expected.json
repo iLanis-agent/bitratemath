@@ -1,0 +1,242 @@
+[
+ {
+  "fn": "sizeTruth",
+  "args": [
+   128,
+   60
+  ],
+  "expected": "128 kbps for 60 minutes: 57.60 MB, 0.06 GB."
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   8000,
+   90
+  ],
+  "expected": "8000 kbps for 90 minutes: 5400.00 MB, 5.40 GB."
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   1,
+   1
+  ],
+  "expected": "1 kbps for 1 minute: 0.01 MB, 0.00 GB."
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   5000,
+   1
+  ],
+  "expected": "5000 kbps for 1 minute: 37.50 MB, 0.04 GB."
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   320,
+   3
+  ],
+  "expected": "320 kbps for 3 minutes: 7.20 MB, 0.01 GB."
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   1000000,
+   100000
+  ],
+  "expected": "1000000 kbps for 100000 minutes: 750000000.00 MB, 750000.00 GB."
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   0,
+   60
+  ],
+  "expected": "ERR:bitrate must be a whole number of kbps from 1 to 1000000"
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   128,
+   0
+  ],
+  "expected": "ERR:minutes must be a whole number from 1 to 100000"
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   128.5,
+   60
+  ],
+  "expected": "ERR:bitrate must be a whole number of kbps from 1 to 1000000"
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   1000001,
+   60
+  ],
+  "expected": "ERR:bitrate must be a whole number of kbps from 1 to 1000000"
+ },
+ {
+  "fn": "sizeTruth",
+  "args": [
+   128,
+   100001
+  ],
+  "expected": "ERR:minutes must be a whole number from 1 to 100000"
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   500,
+   8000
+  ],
+  "expected": "Capacity 500 GB at 8000 kbps holds 8333 minutes, which is 138 hours 53 minutes."
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   1,
+   1000000
+  ],
+  "expected": "Capacity 1 GB at 1000000 kbps holds 0 minutes, which is 0 hours 0 minutes."
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   1000,
+   128
+  ],
+  "expected": "Capacity 1000 GB at 128 kbps holds 1041666 minutes, which is 17361 hours 6 minutes."
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   64,
+   192
+  ],
+  "expected": "Capacity 64 GB at 192 kbps holds 44444 minutes, which is 740 hours 44 minutes."
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   1,
+   8000
+  ],
+  "expected": "Capacity 1 GB at 8000 kbps holds 16 minutes, which is 0 hours 16 minutes."
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   0,
+   8000
+  ],
+  "expected": "ERR:capacity must be a whole number of GB from 1 to 100000"
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   500,
+   0
+  ],
+  "expected": "ERR:bitrate must be a whole number of kbps from 1 to 1000000"
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   100001,
+   8000
+  ],
+  "expected": "ERR:capacity must be a whole number of GB from 1 to 100000"
+ },
+ {
+  "fn": "fitTruth",
+  "args": [
+   100000,
+   1
+  ],
+  "expected": "Capacity 100000 GB at 1 kbps holds 13333333333 minutes, which is 222222222 hours 13 minutes."
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   450,
+   60
+  ],
+  "expected": "450 MB over 60 minutes averages 1000 kbps."
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   4700,
+   120
+  ],
+  "expected": "4700 MB over 120 minutes averages 5222.2 kbps."
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   3.5,
+   4
+  ],
+  "expected": "3.5 MB over 4 minutes averages 116.7 kbps."
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   0.01,
+   1
+  ],
+  "expected": "0.01 MB over 1 minute averages 1.3 kbps."
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   1000,
+   1
+  ],
+  "expected": "1000 MB over 1 minute averages 133333.3 kbps."
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   0,
+   60
+  ],
+  "expected": "ERR:size must be between 0 and 1000000 MB, over 0"
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   450,
+   0
+  ],
+  "expected": "ERR:minutes must be a whole number from 1 to 100000"
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   1000001,
+   60
+  ],
+  "expected": "ERR:size must be between 0 and 1000000 MB, over 0"
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   450,
+   1.5
+  ],
+  "expected": "ERR:minutes must be a whole number from 1 to 100000"
+ },
+ {
+  "fn": "rateTruth",
+  "args": [
+   100,
+   7
+  ],
+  "expected": "100 MB over 7 minutes averages 1904.8 kbps."
+ }
+]
