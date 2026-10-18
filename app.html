@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitrate Math - app</title>
+<style>
+  :root { --accent:#b4540f; --ink:#2a1a10; --paper:#fdf6f0; --soft:#f6e4d3; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2rem 1.2rem; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { margin:1rem 0 1.4rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input, select { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #e4c6aa; border-radius:6px; background:#fff; color:var(--ink); }
+  .row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #e4c6aa; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#8a6347; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Bitrate Math</h1>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    This page turns the bitrate, length and sizes you type into sizes, lengths and rates, in decimal units (1 MB is 1,000,000 bytes, 1 GB is 1000 MB). It does not know what a real file adds on top, and it does not say what bitrate or settings to use.
+  </div>
+
+  <div class="panel">
+    <h2>The size truth</h2>
+    <p class="note">How big a recording is at a steady bitrate and length.</p>
+    <div class="row2">
+      <div><label for="s-k">Bitrate (kbps)</label><input id="s-k" type="number" step="1" value="128"></div>
+      <div><label for="s-m">Minutes</label><input id="s-m" type="number" step="1" value="60"></div>
+    </div>
+    <div class="out" id="s-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The fit truth</h2>
+    <p class="note">How many whole minutes a capacity holds at a steady bitrate.</p>
+    <div class="row2">
+      <div><label for="f-c">Capacity (GB)</label><input id="f-c" type="number" step="1" value="500"></div>
+      <div><label for="f-k">Bitrate (kbps)</label><input id="f-k" type="number" step="1" value="8000"></div>
+    </div>
+    <div class="out" id="f-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The rate truth</h2>
+    <p class="note">The average bitrate of a file whose size and length you know.</p>
+    <div class="row2">
+      <div><label for="r-s">Size (MB)</label><input id="r-s" type="number" step="any" value="450"></div>
+      <div><label for="r-m">Minutes</label><input id="r-m" type="number" step="1" value="60"></div>
+    </div>
+    <div class="out" id="r-out"></div>
+  </div>
+
+  <footer>Bitrate Math is exact arithmetic over the numbers you enter. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  function show(id, fn) {
+    const out = document.getElementById(id);
+    try { out.textContent = fn(); out.classList.remove("err"); }
+    catch (e) { out.textContent = e.message; out.classList.add("err"); }
+  }
+  function recalc() {
+    show("s-out", () => sizeTruth(num("s-k"), num("s-m")));
+    show("f-out", () => fitTruth(num("f-c"), num("f-k")));
+    show("r-out", () => rateTruth(num("r-s"), num("r-m")));
+  }
+  document.querySelectorAll("input").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
